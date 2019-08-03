@@ -3,6 +3,7 @@ extends Node2D
 # SIGNALS
 signal dot_or_dash(character)
 signal input_chain_updated(input_chain)
+signal menu_input_chain_updated(menu_input_chain)
 signal input_message_updated(input_message)
 
 # NODES
@@ -11,7 +12,6 @@ onready var timer_Telegraph_Clear_Input = get_node("timer_Telegraph_Clear_Input"
 onready var fx_Telegraph = get_node("fx_Telegraph") # Timer to reset the character input
 
 # CONSTANTS
-const MESSAGE = "peace"
 const morse_code = {
 	"a": ".-", 
 	"b": "-...", 
@@ -51,17 +51,17 @@ const morse_code = {
 	"9": "----.",
 	".": "-.-.",
 	",": "--..-",
-	"?": "..--.",
+	"?": "..--."
 }
-
 
 # MECHANICS
 const DOT_DASH_TIME_IN_SECONDS = 0.2 # This is the threshold between a dot and a dash
 const INPUT_CLEAR_INTERVAL_IN_SECONDS = 1 # Idle time needed to clear the input
 var input_pressed = false # Is it pressed now?
 var current_input = "" # Current dot or dash
-var input_chain = "" # Sequence of input dots and dashes.
-var input_message = ""
+var input_chain = "" # Sequence of input dots and dashes
+var menu_input_chain = "" # Auxiliar chain for menu input
+var input_message = "" # Message written so far
 
 # FX
 var FX_TELEGRAPH_SHORT = load("res://fx/telegraph_short.ogg")
@@ -93,6 +93,8 @@ func _process(delta):
 	if(timer_Telegraph_Clear_Input.get_time_left() <= 0):
 		check_input_is_correct()
 		input_chain = ""
+		emit_signal("menu_input_chain_updated", menu_input_chain)
+		menu_input_chain = ""
 	
 	pass
 
@@ -122,6 +124,7 @@ func check_telegraph_input():
 			current_input = "."
 		
 		input_chain += current_input
+		menu_input_chain = input_chain
 	
 	emit_signal("dot_or_dash", current_input)
 	emit_signal("input_chain_updated", input_chain)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
 [ext_resource path="res://graphics/bg/unknown.png" type="Texture" id=2]
@@ -6,31 +6,80 @@
 [ext_resource path="res://graphics/prota/prota.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Telegrafo.gd" type="Script" id=5]
 [ext_resource path="res://fx/telegraph_short.ogg" type="AudioStream" id=6]
-[ext_resource path="res://graphics/objetos/reloj.png" type="Texture" id=7]
-[ext_resource path="res://graphics/objetos/periodico.png" type="Texture" id=8]
-[ext_resource path="res://graphics/objetos/papel.png" type="Texture" id=9]
-[ext_resource path="res://fonts/fuente_title.tres" type="DynamicFont" id=10]
-[ext_resource path="res://graphics/objetos/manual.png" type="Texture" id=11]
-[ext_resource path="res://fonts/Old.ttf" type="DynamicFontData" id=12]
-[ext_resource path="res://scripts/InputChain.gd" type="Script" id=13]
-[ext_resource path="res://fonts/AA_typewriter.ttf" type="DynamicFontData" id=14]
-[ext_resource path="res://scripts/LastInput.gd" type="Script" id=15]
-[ext_resource path="res://scripts/MessageBeingSent.gd" type="Script" id=16]
+[ext_resource path="res://fonts/AA_typewriter.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://fonts/Old.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://scripts/InputChain.gd" type="Script" id=9]
+[ext_resource path="res://graphics/objetos/reloj.png" type="Texture" id=10]
+[ext_resource path="res://graphics/objetos/periodico.png" type="Texture" id=11]
+[ext_resource path="res://graphics/objetos/papel.png" type="Texture" id=12]
+[ext_resource path="res://fonts/EngineerHand.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://scripts/WinningWord.gd" type="Script" id=14]
+[ext_resource path="res://graphics/objetos/manual.png" type="Texture" id=15]
+[ext_resource path="res://fonts/fuente_title.tres" type="DynamicFont" id=16]
+[ext_resource path="res://scripts/LastInput.gd" type="Script" id=17]
+[ext_resource path="res://scripts/MessageBeingSent.gd" type="Script" id=18]
+[ext_resource path="res://scripts/timer_Bomb.gd" type="Script" id=19]
+[ext_resource path="res://graphics/prota/OneHandedHero.png" type="Texture" id=20]
+[ext_resource path="res://graphics/prota/icon.png" type="Texture" id=21]
+[ext_resource path="res://fonts/JMHTypewriter.ttf" type="DynamicFontData" id=22]
+[ext_resource path="res://scripts/txt_covfefe.gd" type="Script" id=23]
+
+[sub_resource type="DynamicFont" id=5]
+
+size = 80
+use_mipmaps = false
+use_filter = false
+extra_spacing_char = 50
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 18
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
 
 size = 28
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 12 )
+font_data = ExtResource( 8 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=7]
+
+size = 40
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 13 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=1]
 
-size = 18
+size = 30
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 14 )
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 30
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = -2
+font_data = ExtResource( 22 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=6]
+
+size = 28
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [node name="root" type="Node2D" index="0"]
@@ -38,8 +87,6 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 script = ExtResource( 1 )
 
 [node name="Background" type="Node2D" parent="." index="0"]
-
-editor/display_folded = true
 
 [node name="Warzone" type="Sprite" parent="Background" index="0"]
 
@@ -51,7 +98,15 @@ texture = ExtResource( 2 )
 
 stream = ExtResource( 3 )
 volume_db = 0.0
-autoplay = true
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="music_player" type="AudioStreamPlayer" parent="Background" index="2"]
+
+stream = null
+volume_db = 0.0
+autoplay = false
 mix_target = 0
 bus = "Master"
 
@@ -69,7 +124,6 @@ texture = ExtResource( 4 )
 
 [node name="Telegrafo" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
@@ -90,12 +144,161 @@ autostart = false
 [node name="fx_Telegraph" type="AudioStreamPlayer" parent="Telegrafo" index="2"]
 
 stream = ExtResource( 6 )
-volume_db = 0.0
+volume_db = -20.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Game_UI" type="Control" parent="." index="3"]
+[node name="Menu_UI" type="Control" parent="." index="3"]
+
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Game_Title" type="Label" parent="Menu_UI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 1290.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "1Minute"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Instructions" type="RichTextLabel" parent="Menu_UI" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 670.0
+margin_top = 230.0
+margin_right = 1270.0
+margin_bottom = 690.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "The year is 19xx.
+
+You just received the worst news: the enemy is going to drop a chemical bomb.
+Your mission is to send a surrender message to stop the bomb from being dropped.
+The only tools at your disposal are a telegraph and a manual, but you can only use one at a time (you lost an arm during the war).
+
+You find yourself in a horrible situation:
+	One man, with only one minute.
+	In his only hand, one tool.
+	Send a message to stop the bomb, and; maybe, the war.
+
+Good luck.
+
+
+
+
+Type .-.-- with your telegraph to start the countdown"
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = false
+tab_size = 4
+text = "The year is 19xx.
+
+You just received the worst news: the enemy is going to drop a chemical bomb.
+Your mission is to send a surrender message to stop the bomb from being dropped.
+The only tools at your disposal are a telegraph and a manual, but you can only use one at a time (you lost an arm during the war).
+
+You find yourself in a horrible situation:
+	One man, with only one minute.
+	In his only hand, one tool.
+	Send a message to stop the bomb, and; maybe, the war.
+
+Good luck.
+
+
+
+
+Type .-.-- with your telegraph to start the countdown"
+scroll_active = false
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode", "custom_fonts" ]
+
+[node name="InputChainForPlayer2" type="PanelContainer" parent="Menu_UI" index="2"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 670.0
+margin_top = 650.0
+margin_right = 1250.0
+margin_bottom = 696.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_styles" ]
+
+[node name="InputChain" type="Label" parent="Menu_UI/InputChainForPlayer2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 573.0
+margin_bottom = 39.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 9 )
+_sections_unfolded = [ "Visibility", "custom_colors", "custom_fonts", "custom_styles" ]
+
+[node name="Game_UI" type="Control" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -166,7 +369,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -188,7 +391,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 8 )
+texture = ExtResource( 11 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -219,8 +422,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 9.0
-margin_right = 209.0
+margin_left = 24.0
+margin_right = 224.0
 margin_bottom = 133.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -228,32 +431,35 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 9 )
+texture = ExtResource( 12 )
 stretch_mode = 0
 
-[node name="Texto" type="Label" parent="Game_UI/Container/Mensaje" index="1"]
+[node name="WinningWord" type="Label" parent="Game_UI/Container/Mensaje" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 40.0
-margin_right = 218.0
-margin_bottom = 92.0
+margin_left = 30.0
+margin_top = 51.0
+margin_right = 217.0
+margin_bottom = 81.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "PEACE"
+text = "SURVIVORS"
 align = 1
 valign = 1
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script = ExtResource( 14 )
 _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
 [node name="Manual" type="TextureRect" parent="Game_UI/Container" index="3"]
@@ -273,7 +479,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -302,9 +508,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 7.0
-margin_top = 9.0
+margin_top = 7.0
 margin_right = 653.0
-margin_bottom = 41.0
+margin_bottom = 39.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -316,117 +522,12 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 13 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Visibility", "custom_colors", "custom_fonts", "custom_styles" ]
-
-[node name="Menu_UI" type="Control" parent="." index="4"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-
-[node name="Game_Title" type="Label" parent="Menu_UI" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 1290.0
-margin_bottom = 150.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = ExtResource( 10 )
-text = "One Minute"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
-[node name="Instructions" type="RichTextLabel" parent="Menu_UI" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 670.0
-margin_top = 230.0
-margin_right = 1270.0
-margin_bottom = 690.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_fonts/normal_font = SubResource( 1 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-bbcode_enabled = true
-bbcode_text = "The year is 19xx.
-
-You just received the worst news: the enemy is going to drop a chemical bomb.
-Your mission is to send a surrender message to stop the bomb from being drop.
-The only tools at your disposal are a telegraph and a manual, but you can only use one at a time (you lost an arm during the war).
-
-You find yourself in a horrible situation:
-	One man, with only one minute.
-	In his only hand, one tool.
-	Send a message to stop the bomb, and; maybe, the war.
-
-Good luck.
-
-
-
-
-
-Type .-.-- with your telegraph to start the countdown"
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = false
-tab_size = 4
-text = "The year is 19xx.
-
-You just received the worst news: the enemy is going to drop a chemical bomb.
-Your mission is to send a surrender message to stop the bomb from being drop.
-The only tools at your disposal are a telegraph and a manual, but you can only use one at a time (you lost an arm during the war).
-
-You find yourself in a horrible situation:
-	One man, with only one minute.
-	In his only hand, one tool.
-	Send a message to stop the bomb, and; maybe, the war.
-
-Good luck.
-
-
-
-
-
-Type .-.-- with your telegraph to start the countdown"
-scroll_active = false
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
-_sections_unfolded = [ "BBCode", "custom_fonts" ]
 
 [node name="Debug_UI" type="Control" parent="." index="5"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -455,16 +556,17 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 15 )
+script = ExtResource( 17 )
 _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
 [node name="InputChain" type="Label" parent="Debug_UI" index="1"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -479,12 +581,12 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 13 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Rect" ]
 
 [node name="InputMessage" type="Label" parent="Debug_UI" index="2"]
@@ -503,13 +605,395 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 16 )
+script = ExtResource( 18 )
 _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[node name="timer_Bomb" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 60.0
+one_shot = true
+autostart = false
+script = ExtResource( 19 )
+
+[node name="GameOver_UI" type="Control" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Win" type="Control" parent="GameOver_UI" index="0"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="ColorRect" type="ColorRect" parent="GameOver_UI/Win" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 1290.0
+margin_bottom = 730.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.980392, 0.980392, 0.960784, 1 )
+
+[node name="txt_WinTitle" type="Label" parent="GameOver_UI/Win" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 514.0
+margin_top = 21.0
+margin_right = 1254.0
+margin_bottom = 341.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "THE MAN THAT SAVED ONE COUNTRY"
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="txt_Win" type="RichTextLabel" parent="GameOver_UI/Win" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 170.0
+margin_top = 370.0
+margin_right = 730.0
+margin_bottom = 670.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "The year is 2019.
+
+We remember this man as a hero.
+Just him was all we needed to avoid the loss of so many lives.
+
+Thank you, One Handed Hero.
+
+Type .-.-- to start again."
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = false
+tab_size = 4
+text = "The year is 2019.
+
+We remember this man as a hero.
+Just him was all we needed to avoid the loss of so many lives.
+
+Thank you, One Handed Hero.
+
+Type .-.-- to start again."
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode", "custom_colors", "custom_fonts" ]
+
+[node name="ColorRect2" type="ColorRect" parent="GameOver_UI/Win" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 170.0
+margin_top = 330.0
+margin_right = 1300.0
+margin_bottom = 340.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="GameOver_UI/Win" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 730.0
+margin_top = 370.0
+margin_right = 1050.0
+margin_bottom = 677.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 20 )
+stretch_mode = 0
+
+[node name="TextureRect2" type="TextureRect" parent="GameOver_UI/Win" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 194.0
+margin_top = 53.0
+margin_right = 450.0
+margin_bottom = 309.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 21 )
+stretch_mode = 0
+_sections_unfolded = [ "Theme" ]
+
+[node name="Lose" type="Control" parent="GameOver_UI" index="1"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="ColorRect" type="ColorRect" parent="GameOver_UI/Lose" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 1290.0
+margin_bottom = 730.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.980392, 0.980392, 0.960784, 1 )
+
+[node name="txt_LoseTitle" type="Label" parent="GameOver_UI/Lose" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 514.0
+margin_top = 21.0
+margin_right = 1254.0
+margin_bottom = 341.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "THE MAN THAT FAILED ON THE LAST MINUTE"
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="txt_covfefe" type="Label" parent="GameOver_UI/Lose" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 418.0
+margin_top = 569.0
+margin_right = 666.0
+margin_bottom = 657.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "COVFEFE"
+align = 2
+valign = 1
+autowrap = true
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 23 )
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="txt_Lose" type="RichTextLabel" parent="GameOver_UI/Lose" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 170.0
+margin_top = 370.0
+margin_right = 730.0
+margin_bottom = 746.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "The year is 2019.
+
+We remember this man as an example that not everyone can success.
+It's not easy to send a telegraph when you only have one hand.
+You had one job.
+
+This was the result:
+
+Type .-.-- to start again."
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = false
+tab_size = 4
+text = "The year is 2019.
+
+We remember this man as an example that not everyone can success.
+It's not easy to send a telegraph when you only have one hand.
+You had one job.
+
+This was the result:
+
+Type .-.-- to start again."
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode", "custom_colors", "custom_fonts" ]
+
+[node name="ColorRect2" type="ColorRect" parent="GameOver_UI/Lose" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 170.0
+margin_top = 330.0
+margin_right = 1300.0
+margin_bottom = 340.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="GameOver_UI/Lose" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 730.0
+margin_top = 370.0
+margin_right = 1050.0
+margin_bottom = 677.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 20 )
+stretch_mode = 0
+
+[node name="TextureRect2" type="TextureRect" parent="GameOver_UI/Lose" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 194.0
+margin_top = 53.0
+margin_right = 450.0
+margin_bottom = 309.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 21 )
+stretch_mode = 0
+_sections_unfolded = [ "Theme" ]
+
+[connection signal="message_changed" from="." to="Game_UI/Container/Mensaje/WinningWord" method="_on_root_message_changed"]
+
+[connection signal="typed_message_on_lose" from="." to="GameOver_UI/Lose/txt_covfefe" method="_on_root_typed_message_on_lose"]
 
 [connection signal="dot_or_dash" from="Telegrafo" to="Debug_UI/LastInput" method="_on_Telegrafo_dot_or_dash"]
 
@@ -517,6 +1001,16 @@ _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
 [connection signal="input_chain_updated" from="Telegrafo" to="Game_UI/InputChainForPlayer/InputChain" method="_on_Telegrafo_input_chain_updated"]
 
+[connection signal="input_chain_updated" from="Telegrafo" to="Menu_UI/InputChainForPlayer2/InputChain" method="_on_Telegrafo_input_chain_updated"]
+
+[connection signal="input_message_updated" from="Telegrafo" to="." method="_on_Telegrafo_input_message_updated"]
+
 [connection signal="input_message_updated" from="Telegrafo" to="Debug_UI/InputMessage" method="_on_Telegrafo_input_message_updated"]
+
+[connection signal="menu_input_chain_updated" from="Telegrafo" to="." method="_on_Telegrafo_menu_input_chain_updated"]
+
+[connection signal="boom" from="timer_Bomb" to="." method="_on_timer_Bomb_boom"]
+
+[connection signal="second" from="timer_Bomb" to="Debug_UI/LastInput" method="_on_timer_Bomb_second"]
 
 

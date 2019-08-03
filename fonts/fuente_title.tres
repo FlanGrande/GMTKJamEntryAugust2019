@@ -1,13 +1,14 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://fonts/EngineerHand.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/Mom.ttf" type="DynamicFontData" id=1]
 
 [resource]
 
-size = 72
+size = 80
 use_mipmaps = true
 use_filter = true
-extra_spacing_char = 10
+extra_spacing_char = -8
+extra_spacing_space = -10
 font_data = ExtResource( 1 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
