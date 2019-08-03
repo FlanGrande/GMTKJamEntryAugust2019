@@ -83,6 +83,12 @@ func _process(delta):
 	# We detect and record the input here. Some timers are started here too.
 	check_telegraph_input()
 	
+	# If input is being pressed, reset the clearing timer.
+	if(input_pressed):
+		# Reset input clearing timer to a second
+		timer_Telegraph_Clear_Input.set_wait_time(INPUT_CLEAR_INTERVAL_IN_SECONDS)
+		timer_Telegraph_Clear_Input.start()
+	
 	# If the player is idle for a second, we clear the input chain and check if a letter was written.
 	if(timer_Telegraph_Clear_Input.get_time_left() <= 0):
 		check_input_is_correct()
@@ -107,9 +113,6 @@ func check_telegraph_input():
 	# Finish press
 	if(Input.is_action_just_released("telegrafo")):
 		input_pressed = false
-		# Reset input clearing timer to a second
-		timer_Telegraph_Clear_Input.set_wait_time(INPUT_CLEAR_INTERVAL_IN_SECONDS)
-		timer_Telegraph_Clear_Input.start()
 		
 		if(timer_Telegraph_Dash.get_time_left() <= 0): # Dash
 			current_input = "-"
