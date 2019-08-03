@@ -1,0 +1,355 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
+[ext_resource path="res://graphics/bg/unknown.png" type="Texture" id=2]
+[ext_resource path="res://graphics/prota/prota.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Telegrafo.gd" type="Script" id=4]
+[ext_resource path="res://fx/telegraph_short.ogg" type="AudioStream" id=5]
+[ext_resource path="res://graphics/objetos/reloj.png" type="Texture" id=6]
+[ext_resource path="res://graphics/objetos/periodico.png" type="Texture" id=7]
+[ext_resource path="res://graphics/objetos/papel.png" type="Texture" id=8]
+[ext_resource path="res://fonts/fuente.tres" type="DynamicFont" id=9]
+[ext_resource path="res://graphics/objetos/manual.png" type="Texture" id=10]
+[ext_resource path="res://scripts/LastInput.gd" type="Script" id=11]
+[ext_resource path="res://scripts/InputChain.gd" type="Script" id=12]
+[ext_resource path="res://scripts/MessageBeingSent.gd" type="Script" id=13]
+
+[node name="root" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Background" type="Node2D" parent="." index="0"]
+
+[node name="Warzone" type="Sprite" parent="Background" index="0"]
+
+position = Vector2( 637.392, 357.396 )
+scale = Vector2( 0.426262, 0.409006 )
+texture = ExtResource( 2 )
+
+[node name="Bunker" type="Node2D" parent="." index="1"]
+
+[node name="Prota" type="Node2D" parent="Bunker" index="0"]
+
+[node name="spr_Prota" type="Sprite" parent="Bunker/Prota" index="0"]
+
+position = Vector2( 330, 530 )
+scale = Vector2( 0.353125, 0.353125 )
+texture = ExtResource( 3 )
+
+[node name="Telegrafo" type="Node2D" parent="." index="2"]
+
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="timer_Telegraph_Dash" type="Timer" parent="Telegrafo" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="timer_Telegraph_Clear_Input" type="Timer" parent="Telegrafo" index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="fx_Telegraph" type="AudioStreamPlayer" parent="Telegrafo" index="2"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Game_UI" type="Control" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 910.0
+margin_top = 430.0
+margin_right = 950.0
+margin_bottom = 470.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Game_UI" index="0"]
+
+modulate = Color( 0.660156, 0.51208, 0.281082, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -320.0
+margin_top = -240.0
+margin_right = 340.0
+margin_bottom = 260.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Container" type="Container" parent="Game_UI" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -320.0
+margin_top = -240.0
+margin_right = 340.0
+margin_bottom = 260.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Reloj" type="TextureRect" parent="Game_UI/Container" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 500.0
+margin_top = 20.0
+margin_right = 650.0
+margin_bottom = 226.0
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 6 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Periodico" type="TextureRect" parent="Game_UI/Container" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 328.0
+margin_top = 200.0
+margin_right = 528.0
+margin_bottom = 350.0
+rect_rotation = 2.62142
+rect_scale = Vector2( 1.6, 1.6 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 7 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Mensaje" type="CenterContainer" parent="Game_UI/Container" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 337.0
+margin_top = 74.0
+margin_right = 537.0
+margin_bottom = 207.0
+rect_rotation = -6.87732
+rect_scale = Vector2( 0.7, 0.7 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="Papel" type="TextureRect" parent="Game_UI/Container/Mensaje" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 133.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 8 )
+stretch_mode = 0
+
+[node name="Texto" type="Label" parent="Game_UI/Container/Mensaje" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_top = 53.0
+margin_right = 164.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "PEACE"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[node name="Manual" type="TextureRect" parent="Game_UI/Container" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 756.0
+margin_bottom = 1076.0
+rect_scale = Vector2( 0.4, 0.4 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 10 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Menu_UI" type="Control" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Debug_UI" type="Control" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="LastInput" type="Label" parent="Debug_UI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 11 )
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[node name="InputChain" type="Label" parent="Debug_UI" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 50.0
+margin_right = 40.0
+margin_bottom = 77.0
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 12 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="InputMessage" type="Label" parent="Debug_UI" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 200.0
+margin_right = 240.0
+margin_bottom = 27.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 13 )
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[connection signal="dot_or_dash" from="Telegrafo" to="Debug_UI/LastInput" method="_on_Telegrafo_dot_or_dash"]
+
+[connection signal="input_chain_updated" from="Telegrafo" to="Debug_UI/InputChain" method="_on_Telegrafo_input_chain_updated"]
+
+[connection signal="input_message_updated" from="Telegrafo" to="Debug_UI/InputMessage" method="_on_Telegrafo_input_message_updated"]
+
+

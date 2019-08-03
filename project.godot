@@ -11,8 +11,27 @@ config_version=3
 [application]
 
 config/name="One minute"
+run/main_scene="res://scenes/game_scene.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/resizable=false
+
+[input]
+
+telegrafo=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+
+[physics]
+
+common/enable_object_picking=false
 
 [rendering]
 
+quality/reflections/texture_array_reflections=false
+quality/reflections/high_quality_ggx=false
+environment/default_clear_color=Color( 0.621094, 0.452249, 0.303268, 1 )
 environment/default_environment="res://default_env.tres"
