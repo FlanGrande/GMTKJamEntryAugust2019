@@ -45,5 +45,5 @@ common/enable_object_picking=false
 quality/driver/driver_name="GLES2"
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
-environment/default_clear_color=Color( 0.621094, 0.452249, 0.303268, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

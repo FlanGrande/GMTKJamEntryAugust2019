@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/falling_bomb.ogg-243a847de761efb1bf3b8c9e35253f0b.oggstr"
+
+[deps]
+
+source_file="res://fx/falling_bomb.ogg"
+dest_files=[ "res://.import/falling_bomb.ogg-243a847de761efb1bf3b8c9e35253f0b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

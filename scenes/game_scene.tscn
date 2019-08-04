@@ -1,94 +1,299 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
-[ext_resource path="res://graphics/bg/unknown.png" type="Texture" id=2]
-[ext_resource path="res://fx/war_ambience.ogg" type="AudioStream" id=3]
-[ext_resource path="res://graphics/prota/prota.png" type="Texture" id=4]
-[ext_resource path="res://scripts/Telegrafo.gd" type="Script" id=5]
-[ext_resource path="res://fx/telegraph_short.ogg" type="AudioStream" id=6]
-[ext_resource path="res://scenes/Plane.tscn" type="PackedScene" id=7]
-[ext_resource path="res://fonts/AA_typewriter.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://fonts/Old.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://scripts/InputChain.gd" type="Script" id=10]
-[ext_resource path="res://graphics/objetos/reloj.png" type="Texture" id=11]
-[ext_resource path="res://graphics/objetos/periodico.png" type="Texture" id=12]
-[ext_resource path="res://graphics/objetos/papel.png" type="Texture" id=13]
-[ext_resource path="res://fonts/EngineerHand.ttf" type="DynamicFontData" id=14]
-[ext_resource path="res://scripts/WinningWord.gd" type="Script" id=15]
-[ext_resource path="res://graphics/objetos/manual.png" type="Texture" id=16]
-[ext_resource path="res://fonts/fuente_title.tres" type="DynamicFont" id=17]
-[ext_resource path="res://scripts/LastInput.gd" type="Script" id=18]
-[ext_resource path="res://scripts/MessageBeingSent.gd" type="Script" id=19]
-[ext_resource path="res://graphics/bg/bunker.png" type="Texture" id=20]
-[ext_resource path="res://graphics/prota/icon.png" type="Texture" id=21]
-[ext_resource path="res://fonts/Mom.ttf" type="DynamicFontData" id=22]
-[ext_resource path="res://scripts/txt_covfefe.gd" type="Script" id=23]
-[ext_resource path="res://scripts/timer_Bomb.gd" type="Script" id=24]
+[ext_resource path="res://graphics/bg/fondo.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Lampara.tscn" type="PackedScene" id=3]
+[ext_resource path="res://graphics/animations/soldados/soldado_completo.png" type="Texture" id=4]
+[ext_resource path="res://graphics/bg/escenario.png" type="Texture" id=5]
+[ext_resource path="res://fx/war_ambience.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scripts/Prota.gd" type="Script" id=7]
+[ext_resource path="res://graphics/prota/Pulsando.png" type="Texture" id=8]
+[ext_resource path="res://graphics/prota/pose.png" type="Texture" id=9]
+[ext_resource path="res://scripts/Telegrafo.gd" type="Script" id=10]
+[ext_resource path="res://fx/telegraph_short.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scenes/Plane.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scripts/Plane.gd" type="Script" id=13]
+[ext_resource path="res://graphics/animations/avion/avion.png" type="Texture" id=14]
+[ext_resource path="res://scripts/timer_PlaneBomb.gd" type="Script" id=15]
+[ext_resource path="res://fonts/AA_typewriter.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://fonts/Old.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://scripts/InputChain.gd" type="Script" id=18]
+[ext_resource path="res://graphics/objetos/reloj.png" type="Texture" id=19]
+[ext_resource path="res://graphics/objetos/anilla.png" type="Texture" id=20]
+[ext_resource path="res://scripts/Aguja.gd" type="Script" id=21]
+[ext_resource path="res://graphics/objetos/Manual.tscn" type="PackedScene" id=22]
+[ext_resource path="res://graphics/objetos/papel.png" type="Texture" id=23]
+[ext_resource path="res://fonts/EngineerHand.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://scripts/WinningWord.gd" type="Script" id=25]
+[ext_resource path="res://fonts/fuente_title.tres" type="DynamicFont" id=26]
+[ext_resource path="res://scripts/LastInput.gd" type="Script" id=27]
+[ext_resource path="res://scripts/MessageBeingSent.gd" type="Script" id=28]
+[ext_resource path="res://graphics/bg/bunker.png" type="Texture" id=29]
+[ext_resource path="res://graphics/prota/icon.png" type="Texture" id=30]
+[ext_resource path="res://fonts/Mom.ttf" type="DynamicFontData" id=31]
+[ext_resource path="res://scripts/txt_covfefe.gd" type="Script" id=32]
+[ext_resource path="res://scripts/timer_Bomb.gd" type="Script" id=33]
+[ext_resource path="res://scenes/screenshake.tscn" type="PackedScene" id=34]
+
+[sub_resource type="Animation" id=8]
+resource_name = "soldado_loop"
+length = 1.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 15 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -134, -47 ), Vector2( -500, -47 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "idle"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.7, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "press"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
 extra_spacing_char = 50
-font_data = ExtResource( 8 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 18
-font_data = ExtResource( 8 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 28
-font_data = ExtResource( 9 )
+font_data = ExtResource( 17 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 40
-font_data = ExtResource( 14 )
+font_data = ExtResource( 24 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 30
-font_data = ExtResource( 8 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 36
-font_data = ExtResource( 8 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 30
-font_data = ExtResource( 22 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 1195, 10 )
+font_data = ExtResource( 31 )
 
 [node name="root" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Bombs" type="Node2D" parent="."]
-
 [node name="Background" type="Node2D" parent="."]
 
-[node name="Warzone" type="Sprite" parent="Background"]
+[node name="WarzoneBG" type="Sprite" parent="Background"]
 position = Vector2( 519.804, 291.658 )
 scale = Vector2( 0.39105, 0.37522 )
 texture = ExtResource( 2 )
 
+[node name="War" type="Node2D" parent="Background"]
+position = Vector2( -510, -30 )
+
+[node name="Lampara" parent="Background/War" instance=ExtResource( 3 )]
+
+[node name="ActionScene" type="Node2D" parent="Background"]
+visible = false
+
+[node name="soldados" type="Sprite" parent="Background/ActionScene"]
+position = Vector2( -134, -47 )
+scale = Vector2( 0.592634, 0.592634 )
+texture = ExtResource( 4 )
+hframes = 15
+frame = 7
+
+[node name="sold_anim" type="AnimationPlayer" parent="Background/ActionScene/soldados"]
+anims/soldado_loop = SubResource( 8 )
+
+[node name="Bombs" type="Node2D" parent="Background"]
+
+[node name="WarzoneFG" type="Sprite" parent="Background"]
+position = Vector2( 519.804, 291.658 )
+scale = Vector2( 0.39105, 0.37522 )
+texture = ExtResource( 5 )
+
 [node name="fx_background_war" type="AudioStreamPlayer" parent="Background"]
-stream = ExtResource( 3 )
+stream = ExtResource( 6 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Background"]
 volume_db = -10.0
 
+[node name="aux_fx" type="AudioStreamPlayer" parent="Background"]
+volume_db = -8.0
+
 [node name="Bunker" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Prota" type="Node2D" parent="Bunker"]
 position = Vector2( -370, 130 )
+script = ExtResource( 7 )
 
 [node name="spr_Prota" type="Sprite" parent="Bunker/Prota"]
-position = Vector2( 334, 526 )
+position = Vector2( 326, 502 )
 scale = Vector2( 0.373863, 0.373863 )
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bunker/Prota/spr_Prota"]
+anims/idle = SubResource( 9 )
+anims/press = SubResource( 10 )
 
 [node name="Telegrafo" type="Node2D" parent="."]
-editor/display_folded = true
-script = ExtResource( 5 )
+script = ExtResource( 10 )
 
 [node name="timer_Telegraph_Dash" type="Timer" parent="Telegrafo"]
 one_shot = true
@@ -97,13 +302,25 @@ one_shot = true
 one_shot = true
 
 [node name="fx_Telegraph" type="AudioStreamPlayer" parent="Telegrafo"]
-stream = ExtResource( 6 )
+stream = ExtResource( 11 )
 volume_db = -20.0
 
-[node name="Plane" parent="." instance=ExtResource( 7 )]
+[node name="Plane" parent="." instance=ExtResource( 12 )]
+
+[node name="Plane2" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 2284, -93 )
+scale = Vector2( 0.16, 0.16 )
+script = ExtResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="Plane2"]
+texture = ExtResource( 14 )
+
+[node name="timer_PlaneBomb" type="Timer" parent="Plane2"]
+wait_time = 10.0
+script = ExtResource( 15 )
 
 [node name="Menu_UI" type="Control" parent="."]
-editor/display_folded = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -178,10 +395,9 @@ margin_right = 573.0
 margin_bottom = 39.0
 custom_fonts/font = SubResource( 3 )
 valign = 1
-script = ExtResource( 10 )
+script = ExtResource( 18 )
 
 [node name="Game_UI" type="Control" parent="."]
-editor/display_folded = true
 visible = false
 margin_left = 910.0
 margin_top = 430.0
@@ -189,6 +405,7 @@ margin_right = 950.0
 margin_bottom = 470.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Game_UI"]
+visible = false
 modulate = Color( 0.660156, 0.51208, 0.281082, 1 )
 margin_left = -320.0
 margin_top = -240.0
@@ -202,34 +419,35 @@ margin_right = 340.0
 margin_bottom = 260.0
 
 [node name="Reloj" type="TextureRect" parent="Game_UI/Container"]
-margin_left = 500.0
-margin_top = 20.0
-margin_right = 650.0
-margin_bottom = 226.0
-rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 11 )
+margin_left = 525.0
+margin_top = 173.0
+margin_right = 1323.0
+margin_bottom = 1087.0
+rect_scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 19 )
 
-[node name="Periodico" type="TextureRect" parent="Game_UI/Container"]
-margin_left = 328.0
-margin_top = 200.0
-margin_right = 528.0
-margin_bottom = 350.0
-rect_rotation = 2.62142
-rect_scale = Vector2( 1.6, 1.6 )
-texture = ExtResource( 12 )
+[node name="Aguja" type="Sprite" parent="Game_UI/Container/Reloj"]
+position = Vector2( 398, 520 )
+texture = ExtResource( 20 )
+offset = Vector2( 0, -66 )
+script = ExtResource( 21 )
+
+[node name="Manual" parent="Game_UI/Container" instance=ExtResource( 22 )]
+position = Vector2( -17, 224 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Mensaje" type="CenterContainer" parent="Game_UI/Container"]
-margin_left = 337.0
-margin_top = 74.0
-margin_right = 537.0
-margin_bottom = 207.0
+margin_left = 535.0
+margin_top = -11.0
+margin_right = 735.0
+margin_bottom = 122.0
 rect_rotation = -6.87732
-rect_scale = Vector2( 0.7, 0.7 )
+rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="Papel" type="TextureRect" parent="Game_UI/Container/Mensaje"]
 margin_right = 200.0
 margin_bottom = 133.0
-texture = ExtResource( 13 )
+texture = ExtResource( 23 )
 
 [node name="WinningWord" type="Label" parent="Game_UI/Container/Mensaje"]
 margin_left = 6.0
@@ -237,35 +455,27 @@ margin_top = 51.0
 margin_right = 193.0
 margin_bottom = 81.0
 custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.756863, 0.384314, 0.054902, 1 )
 text = "SURVIVORS"
 align = 1
 valign = 1
 uppercase = true
-script = ExtResource( 15 )
-
-[node name="Manual" type="TextureRect" parent="Game_UI/Container"]
-margin_left = 20.0
-margin_top = 40.0
-margin_right = 756.0
-margin_bottom = 1076.0
-rect_scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 16 )
+script = ExtResource( 25 )
 
 [node name="InputChainForPlayer" type="PanelContainer" parent="Game_UI"]
-margin_left = -320.0
-margin_top = 220.0
-margin_right = 340.0
-margin_bottom = 260.0
+margin_left = 122.0
+margin_top = 310.0
+margin_right = 529.0
+margin_bottom = 356.0
 
 [node name="InputChain" type="Label" parent="Game_UI/InputChainForPlayer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 653.0
+margin_right = 400.0
 margin_bottom = 39.0
 custom_fonts/font = SubResource( 3 )
 valign = 1
-script = ExtResource( 10 )
+script = ExtResource( 18 )
 
 [node name="Debug_UI" type="Control" parent="."]
 editor/display_folded = true
@@ -277,9 +487,9 @@ margin_bottom = 40.0
 margin_right = 40.0
 margin_bottom = 14.0
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-script = ExtResource( 18 )
+script = ExtResource( 27 )
 
 [node name="InputChain" type="Label" parent="Debug_UI"]
 visible = false
@@ -287,28 +497,25 @@ margin_top = 50.0
 margin_right = 40.0
 margin_bottom = 77.0
 rect_scale = Vector2( 1.5, 1.5 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-script = ExtResource( 10 )
+script = ExtResource( 18 )
 
 [node name="InputMessage" type="Label" parent="Debug_UI"]
 margin_left = 200.0
 margin_right = 240.0
 margin_bottom = 27.0
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-script = ExtResource( 19 )
+script = ExtResource( 28 )
 
 [node name="GameOver_UI" type="Control" parent="."]
-editor/display_folded = true
 margin_top = 55.0
 margin_right = 40.0
 margin_bottom = 95.0
 
 [node name="Win" type="Control" parent="GameOver_UI"]
-editor/display_folded = true
-visible = false
 margin_top = 70.0
 margin_right = 40.0
 margin_bottom = 110.0
@@ -325,7 +532,7 @@ margin_left = -10.0
 margin_top = -210.0
 margin_right = 1426.0
 margin_bottom = 110.0
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "THE MAN THAT SAVED ONE COUNTRY"
 valign = 1
@@ -370,17 +577,31 @@ margin_top = 70.0
 margin_right = 3689.0
 margin_bottom = 1826.0
 rect_scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 20 )
+texture = ExtResource( 29 )
 
 [node name="TextureRect2" type="TextureRect" parent="GameOver_UI/Win"]
 margin_left = -306.0
 margin_top = -278.0
 margin_right = -50.0
 margin_bottom = -22.0
-texture = ExtResource( 21 )
+texture = ExtResource( 30 )
+
+[node name="InputChainForPlayer2" type="PanelContainer" parent="GameOver_UI/Win"]
+margin_left = -328.0
+margin_top = 372.0
+margin_right = 79.0
+margin_bottom = 418.0
+
+[node name="InputChain" type="Label" parent="GameOver_UI/Win/InputChainForPlayer2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 400.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 3 )
+valign = 1
+script = ExtResource( 18 )
 
 [node name="Lose" type="Control" parent="GameOver_UI"]
-editor/display_folded = true
 visible = false
 margin_top = 70.0
 margin_right = 40.0
@@ -398,7 +619,7 @@ margin_left = -10.0
 margin_top = -260.0
 margin_right = 1350.0
 margin_bottom = 60.0
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "THE MAN THAT FAILED ON THE LAST MINUTE"
 valign = 1
@@ -446,7 +667,7 @@ custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "\"COVFEFE\""
 uppercase = true
-script = ExtResource( 23 )
+script = ExtResource( 32 )
 
 [node name="ColorRect2" type="ColorRect" parent="GameOver_UI/Lose"]
 margin_left = -330.0
@@ -461,44 +682,60 @@ margin_top = 70.0
 margin_right = 3689.0
 margin_bottom = 1826.0
 rect_scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 20 )
+texture = ExtResource( 29 )
 
 [node name="TextureRect2" type="TextureRect" parent="GameOver_UI/Lose"]
 margin_left = -306.0
 margin_top = -278.0
 margin_right = -50.0
 margin_bottom = -22.0
-texture = ExtResource( 21 )
+texture = ExtResource( 30 )
+
+[node name="InputChainForPlayer2" type="PanelContainer" parent="GameOver_UI/Lose"]
+margin_left = -328.0
+margin_top = 599.0
+margin_right = 79.0
+margin_bottom = 645.0
+
+[node name="InputChain" type="Label" parent="GameOver_UI/Lose/InputChainForPlayer2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 400.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 3 )
+valign = 1
+script = ExtResource( 18 )
 
 [node name="timer_Bomb" type="Timer" parent="."]
 wait_time = 60.0
 one_shot = true
-script = ExtResource( 24 )
+script = ExtResource( 33 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 566, 332 )
+position = Vector2( 522, 332 )
 current = true
-limit_left = -418
+limit_left = -464
 limit_top = -348
-limit_right = 1486
+limit_right = 1511
 limit_bottom = 924
+editor_draw_limits = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="BombsTrigger" type="Area2D" parent="."]
-position = Vector2( 570, 203 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BombsTrigger"]
-shape = SubResource( 8 )
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 34 )]
 [connection signal="message_changed" from="." to="Game_UI/Container/Mensaje/WinningWord" method="_on_root_message_changed"]
 [connection signal="message_changed" from="." to="Telegrafo" method="_on_root_message_changed"]
 [connection signal="typed_message_on_lose" from="." to="GameOver_UI/Lose/txt_covfefe" method="_on_root_typed_message_on_lose"]
 [connection signal="dot_or_dash" from="Telegrafo" to="Debug_UI/LastInput" method="_on_Telegrafo_dot_or_dash"]
-[connection signal="input_chain_updated" from="Telegrafo" to="Game_UI/InputChainForPlayer/InputChain" method="_on_Telegrafo_input_chain_updated"]
-[connection signal="input_chain_updated" from="Telegrafo" to="Debug_UI/InputChain" method="_on_Telegrafo_input_chain_updated"]
+[connection signal="input_chain_updated" from="Telegrafo" to="GameOver_UI/Win/InputChainForPlayer2/InputChain" method="_on_Telegrafo_input_chain_updated"]
 [connection signal="input_chain_updated" from="Telegrafo" to="Menu_UI/InputChainForPlayer2/InputChain" method="_on_Telegrafo_input_chain_updated"]
+[connection signal="input_chain_updated" from="Telegrafo" to="Debug_UI/InputChain" method="_on_Telegrafo_input_chain_updated"]
+[connection signal="input_chain_updated" from="Telegrafo" to="Game_UI/InputChainForPlayer/InputChain" method="_on_Telegrafo_input_chain_updated"]
+[connection signal="input_chain_updated" from="Telegrafo" to="GameOver_UI/Lose/InputChainForPlayer2/InputChain" method="_on_Telegrafo_input_chain_updated"]
 [connection signal="input_message_updated" from="Telegrafo" to="Debug_UI/InputMessage" method="_on_Telegrafo_input_message_updated"]
 [connection signal="input_message_updated" from="Telegrafo" to="." method="_on_Telegrafo_input_message_updated"]
 [connection signal="menu_input_chain_updated" from="Telegrafo" to="." method="_on_Telegrafo_menu_input_chain_updated"]
+[connection signal="typing_updated" from="Telegrafo" to="Game_UI/Container/Manual" method="_on_Telegrafo_typing_updated"]
+[connection signal="typing_updated" from="Telegrafo" to="Bunker/Prota" method="_on_Telegrafo_typing_updated"]
+[connection signal="timeout" from="Plane2/timer_PlaneBomb" to="Plane2" method="_on_timer_PlaneBomb_timeout"]
 [connection signal="boom" from="timer_Bomb" to="." method="_on_timer_Bomb_boom"]
+[connection signal="second" from="timer_Bomb" to="Game_UI/Container/Reloj/Aguja" method="_on_timer_Bomb_second"]
 [connection signal="second" from="timer_Bomb" to="Debug_UI/LastInput" method="_on_timer_Bomb_second"]

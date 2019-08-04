@@ -35,12 +35,16 @@ var boom = false # If boom is true, you lost the game
 var menu_input_chain = "" # Input after releasing for one second
 var input_message = "" # Message written so far
 var game_started = false
+var manual_is_open = false
 
 # MUSIC
 var MUSIC_MENU = load("res://music/music_menu.ogg")
 var MUSIC_111 = load("res://music/111.ogg")
 var MUSIC_WIN = load("res://music/music_win.ogg")
 var MUSIC_LOSE = load("res://music/music_lose.ogg")
+
+#FX
+var FX_SIREN = load("res://fx/siren.ogg")
 
 func _ready():
 	randomize()
@@ -108,27 +112,38 @@ func start_game():
 	boom = false
 	game_started = true
 	node_Plane.active = PLANES_ENABLED
+	get_node("Background/Bombs").visible = true
 	get_node("Game_UI").visible = true
 	get_node("Menu_UI").visible = false
 	get_node("GameOver_UI/Win").visible = false
 	get_node("GameOver_UI/Lose").visible = false
 	get_node("Background/fx_background_war").play()
+	get_node("Background/aux_fx").set_stream(FX_SIREN)
+	get_node("Background/aux_fx").play()
 	change_music(MUSIC_111)
+	get_node("Background/ActionScene").visible = true
+	get_node("Background/ActionScene/soldados/sold_anim").play("soldado_loop")
 
 func stop_game():
+	get_node("Background/Bombs").visible = false
 	get_node("Game_UI").visible = false
 	get_node("Menu_UI").visible = false
 	timer_Bomb.stop()
+	node_Plane.active = false
 	boom = false
 	game_started = false
 	input_message = ""
 	get_node("Background/fx_background_war").stop()
+	get_node("Background/ActionScene").visible = false
+	get_node("Background/ActionScene/soldados/sold_anim").stop()
 
 func check_input_press():
-	Game_UI.get_node("Container/Manual").visible = true
+	#Game_UI.get_node("Container/Manual").open()
+	Game_UI.get_node("Container/Mensaje").visible = true
 	
 	if(node_Telegrafo.input_pressed):
-		Game_UI.get_node("Container/Manual").visible = false
+		#Game_UI.get_node("Container/Manual").close()
+		Game_UI.get_node("Container/Mensaje").visible = false
 
 func check_win_condition():
 	if(input_message == message):
@@ -146,10 +161,16 @@ func check_lose_condition():
 func _on_timer_Bomb_boom():
 	boom = true
 
-
 func _on_Telegrafo_input_message_updated(mess):
 	input_message = mess
 
-
 func _on_Telegrafo_menu_input_chain_updated(m_i_c):
 	menu_input_chain = m_i_c
+
+func _on_Bomb_shake_everything(pos):
+	get_node("Camera2D/ScreenShake").start()
+	get_node("Background/War/Lampara/lamp_anim").play("lampara_agitada")
+	var explosion_fx = load("res://scenes/explosion_p.tscn").instance()
+	explosion_fx.position = pos
+	get_node("Background/Bombs").add_child(explosion_fx)
+	pass

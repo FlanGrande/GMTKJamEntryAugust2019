@@ -5,11 +5,14 @@ signal dot_or_dash(character)
 signal input_chain_updated(input_chain)
 signal menu_input_chain_updated(menu_input_chain)
 signal input_message_updated(input_message)
+signal typing_updated(true_or_false)
 
 # NODES
 onready var timer_Telegraph_Dash = get_node("timer_Telegraph_Dash") # Timer to detect dot or dash
 onready var timer_Telegraph_Clear_Input = get_node("timer_Telegraph_Clear_Input") # Timer to reset the character input
 onready var fx_Telegraph = get_node("fx_Telegraph") # Timer to reset the character input
+onready var node_GameUI = get_parent().get_node("GAME_UI/Container")
+onready var node_Prota = get_parent().get_node("Bunker/Prota")
 
 # CONSTANTS
 const morse_code = {
@@ -62,6 +65,7 @@ var current_input = "" # Current dot or dash
 var input_chain = "" # Sequence of input dots and dashes
 var menu_input_chain = "" # Auxiliar chain for menu input
 var input_message = "" # Message written so far
+var typing = false
 
 # FX
 var FX_TELEGRAPH_SHORT = load("res://fx/telegraph_short.ogg")
@@ -80,6 +84,8 @@ func _process(delta):
 	
 	# If the player is idle for a second, we clear the input chain and check if a letter was written.
 	if(timer_Telegraph_Clear_Input.get_time_left() <= 0):
+		typing = false # After sending an input chain, you stop typing
+		emit_signal("typing_updated", typing)
 		check_input_is_correct()
 		input_chain = ""
 		emit_signal("menu_input_chain_updated", menu_input_chain)
@@ -92,6 +98,8 @@ func check_telegraph_input():
 	# Start press
 	if(Input.is_action_just_pressed("telegrafo")):
 		input_pressed = true
+		typing = true
+		emit_signal("typing_updated", typing)
 		
 		# Set timer to detect dot or dash
 		timer_Telegraph_Dash.set_wait_time(DOT_DASH_TIME_IN_SECONDS)

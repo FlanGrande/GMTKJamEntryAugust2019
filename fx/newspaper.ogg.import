@@ -11,5 +11,5 @@ dest_files=[ "res://.import/newspaper.ogg-15a0bd735478bd9f286a5ab6a44e47b1.oggst
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
