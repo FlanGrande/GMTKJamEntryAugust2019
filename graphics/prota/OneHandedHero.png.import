@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/OneHandedHero.png-ed2783c31ffbeaf5b2f44c570669fc38.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://graphics/prota/OneHandedHero.png"
-source_md5="3c8ce1b9f2812cfda8d6121298af4269"
-
 dest_files=[ "res://.import/OneHandedHero.png-ed2783c31ffbeaf5b2f44c570669fc38.stex" ]
-dest_md5="cdc94900fab3827240d0f54338f83c7e"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

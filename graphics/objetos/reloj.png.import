@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/reloj.png-070bb87f0eb7bc053e0d8e70cca32e1e.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://graphics/objetos/reloj.png"
-source_md5="95995443fee4a8c92d1e087e90664cfc"
-
 dest_files=[ "res://.import/reloj.png-070bb87f0eb7bc053e0d8e70cca32e1e.stex" ]
-dest_md5="e773e434019894933213e2c36b3d0fd5"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

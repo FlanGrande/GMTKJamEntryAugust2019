@@ -7,10 +7,7 @@ path="res://.import/music_lose.ogg-6e371bab73e34266885cff22f148af8d.oggstr"
 [deps]
 
 source_file="res://music/music_lose.ogg"
-source_md5="3564dfc0ded9a57ed91ec1f5935b9f3d"
-
 dest_files=[ "res://.import/music_lose.ogg-6e371bab73e34266885cff22f148af8d.oggstr" ]
-dest_md5="876be2d8e799c64c97e234fb3b481f53"
 
 [params]
 

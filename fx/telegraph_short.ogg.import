@@ -7,10 +7,7 @@ path="res://.import/telegraph_short.ogg-57c3e520f739849ac2a8c2b063e97734.oggstr"
 [deps]
 
 source_file="res://fx/telegraph_short.ogg"
-source_md5="cb7f8ec6d2b3cfe5dbd1e33b513d906b"
-
 dest_files=[ "res://.import/telegraph_short.ogg-57c3e520f739849ac2a8c2b063e97734.oggstr" ]
-dest_md5="923f3187663c13afd0113147843d492e"
 
 [params]
 

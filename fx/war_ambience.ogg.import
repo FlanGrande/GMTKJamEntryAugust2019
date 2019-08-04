@@ -7,10 +7,7 @@ path="res://.import/war_ambience.ogg-372b0961ff959d2de01f448fa6c6dc82.oggstr"
 [deps]
 
 source_file="res://fx/war_ambience.ogg"
-source_md5="868f7a78e827fc1264bc861a06650976"
-
 dest_files=[ "res://.import/war_ambience.ogg-372b0961ff959d2de01f448fa6c6dc82.oggstr" ]
-dest_md5="8f33a1a97f5c6d5173f657846dccc519"
 
 [params]
 

@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/prota.png-82c834c3f9c20e9994154d05099afa73.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://graphics/prota/prota.png"
-source_md5="08a6f271050caabca818fefab747d43d"
-
 dest_files=[ "res://.import/prota.png-82c834c3f9c20e9994154d05099afa73.stex" ]
-dest_md5="56c789e4f0512da1e6b9d0bf6066568f"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
