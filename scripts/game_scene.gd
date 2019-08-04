@@ -6,6 +6,9 @@ signal typed_message_on_lose(typed_message)
 # NODES
 onready var timer_Bomb = get_node("timer_Bomb") # Timer to detect dot or dash
 onready var MusicPlayer = get_node("Background/MusicPlayer") # Timer to detect dot or dash
+onready var node_Telegrafo = get_node("Telegrafo") # Telegraph node
+onready var node_Plane = get_node("Plane") # Plane node
+onready var Game_UI = get_node("Game_UI") # Game HUD
 
 # List of posible words
 var posible_words = [
@@ -22,6 +25,8 @@ var posible_words = [
 	"strategy",
 	"bomb"
 ]
+
+const PLANES_ENABLED = true # Enable/Disable planes
 
 # MECHANICS
 var message = "" # Word that stops the bomb and wins the game
@@ -67,6 +72,8 @@ func _process(delta):
 		start_game()
 	
 	if(game_started):
+		check_input_press()
+		
 		check_win_condition()
 		check_lose_condition()
 		
@@ -100,6 +107,7 @@ func start_game():
 	timer_Bomb.start()
 	boom = false
 	game_started = true
+	node_Plane.active = PLANES_ENABLED
 	get_node("Game_UI").visible = true
 	get_node("Menu_UI").visible = false
 	get_node("GameOver_UI/Win").visible = false
@@ -115,7 +123,12 @@ func stop_game():
 	game_started = false
 	input_message = ""
 	get_node("Background/fx_background_war").stop()
+
+func check_input_press():
+	Game_UI.get_node("Container/Manual").visible = true
 	
+	if(node_Telegrafo.input_pressed):
+		Game_UI.get_node("Container/Manual").visible = false
 
 func check_win_condition():
 	if(input_message == message):

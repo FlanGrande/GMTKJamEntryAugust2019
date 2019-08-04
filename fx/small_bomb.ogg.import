@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/small_bomb.ogg-b7b3659c35f8b8813234c6c46219ae6f.oggstr"
+
+[deps]
+
+source_file="res://fx/small_bomb.ogg"
+dest_files=[ "res://.import/small_bomb.ogg-b7b3659c35f8b8813234c6c46219ae6f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
