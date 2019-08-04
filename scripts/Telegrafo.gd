@@ -69,17 +69,9 @@ var FX_TELEGRAPH_LONG = load("res://fx/telegraph_long.ogg")
 
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	
-	#print(morse_code.a)
-	
 	pass
 
 func _process(delta):
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	
 	# We detect and record the input here. Some timers are started here too.
 	check_telegraph_input()
 	
@@ -141,3 +133,8 @@ func check_input_is_correct():
 				# input_chain is not a morse character 
 				# print("Not found")
 				pass
+
+func _on_root_message_changed(message):
+	input_chain = ""
+	input_message = ""
+	menu_input_chain = ""
